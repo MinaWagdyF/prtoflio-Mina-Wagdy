@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mina Wagdy | Video editor, videographer, photographer</title>
+<meta name="description" content="Portfolio of Mina Wagdy, a computer science student who edits video, shoots video and takes photos.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#edeff2; --panel:#dde1e7; --ink:#1b2330; --mute:#566174; --rec:#e4372c; --line:#c3c9d2;
+  --display:"Bricolage Grotesque",system-ui,sans-serif; --mono:"DM Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#151a22; --panel:#1e2530; --ink:#e8ebf0; --mute:#97a1b2; --line:#303a49}
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 var(--display);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rec);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-weight:800;text-decoration:none;display:flex;align-items:center;gap:10px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--rec);animation:rec 1.6s steps(2,jump-none) infinite}
+nav{display:flex;gap:22px}
+nav a{text-decoration:none;color:var(--mute);font-size:.95rem}
+nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding:clamp(40px,9vw,110px) 0 40px}
+.tc{font:400 .9rem var(--mono);color:var(--mute);margin-bottom:18px}
+h1{font-weight:800;font-size:clamp(3rem,10.5vw,8.2rem);line-height:.92;letter-spacing:-.04em}
+.lead{max-width:34ch;margin-top:28px;font-size:1.25rem;color:var(--mute)}
+
+/* timeline: the one memorable element */
+.timeline{position:relative;margin-top:56px;padding-top:26px;border-top:1px solid var(--line)}
+.ruler{position:absolute;top:0;left:0;right:0;height:10px;
+  background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 5%)}
+.tracks{display:grid;gap:8px}
+.track{display:flex;gap:6px}
+.clip{padding:10px 14px;border-radius:6px;font-size:.92rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:var(--panel);border-left:4px solid var(--ink)}
+.clip.v{border-color:var(--rec)}
+.clip.p{border-color:#3a7bd5}
+.clip.c{border-color:#2e9e6b}
+.playhead{position:absolute;top:-6px;bottom:-8px;left:0;width:2px;background:var(--rec);animation:sweep 3.2s cubic-bezier(.6,0,.3,1) 1 forwards}
+.playhead::before{content:"";position:absolute;top:0;left:-6px;border:7px solid transparent;border-top:10px solid var(--rec);border-bottom:0}
+
+/* sections */
+section{padding:72px 0}
+h2{font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.025em;margin-bottom:10px}
+.sub{color:var(--mute);margin-bottom:36px;max-width:52ch}
+
+/* work: contact sheet */
+.sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.frame{position:relative;aspect-ratio:3/2;border-radius:6px;overflow:hidden;background:var(--panel);display:flex;align-items:flex-end}
+.frame img,.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.frame::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 55%,rgba(0,0,0,.14))}
+.frame figcaption{position:relative;z-index:1;width:100%;padding:10px 12px;font-size:.9rem;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff}
+.frame small{display:block;font:400 .75rem var(--mono);opacity:.8}
+.frame.w{grid-column:span 2;aspect-ratio:auto}
+@media(max-width:620px){.frame.w{grid-column:auto;aspect-ratio:3/2}}
+.hint{margin-top:18px;font-size:.9rem;color:var(--mute)}
+
+/* about + skills */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:760px){.two{grid-template-columns:1fr}nav{gap:14px}}
+.two p+p{margin-top:14px}
+.list{list-style:none;padding:0;border-top:1px solid var(--line)}
+.list li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.list span{color:var(--mute);text-align:right}
+
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.mail{display:inline-block;font-weight:800;font-size:clamp(1.6rem,5vw,3.2rem);letter-spacing:-.03em;text-decoration:none;border-bottom:4px solid var(--rec);margin:10px 0 28px}
+.links{display:flex;flex-wrap:wrap;gap:12px 28px}
+.links a{color:var(--mute)}
+.links a:hover{color:var(--ink)}
+footer{padding:30px 0 50px;color:var(--mute);font-size:.9rem}
+
+@keyframes sweep{from{left:0}to{left:calc(100% - 2px)}}
+@keyframes rec{50%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.playhead{animation:none;left:calc(100% - 2px)}.dot{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#top"><span class="dot"></span>Mina Wagdy</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <p class="tc">TC 00:00:00:00</p>
+      <h1>Mina<br>Wagdy</h1>
+      <p class="lead">I edit video, shoot video and take photos. I also study computer science.</p>
+
+      <div class="timeline" aria-label="What I do, shown as an editing timeline">
+        <div class="ruler"></div>
+        <div class="tracks">
+          <div class="track">
+            <div class="clip v" style="flex:4">Video editing</div>
+            <div class="clip v" style="flex:3">Videography</div>
+          </div>
+          <div class="track">
+            <div class="clip p" style="flex:3">Photography</div>
+            <div class="clip c" style="flex:4">Computer science student</div>
+          </div>
+        </div>
+        <div class="playhead" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <section id="work">
+      <h2>Selected work</h2>
+      <p class="sub">A few frames from recent projects. Click a frame's title area to see how I describe each one.</p>
+
+      <!--
+        HOW TO ADD YOUR OWN WORK:
+        1. Put your photos in an "images" folder next to this file.
+        2. Add <img src="images/your-photo.jpg" alt="describe it"> as the first child inside a <figure class="frame">.
+        3. For a video, use <video src="videos/clip.mp4" controls muted playsinline></video>
+           or link to YouTube/Vimeo in the caption.
+      -->
+      <div class="sheet">
+        <figure class="frame w"><figcaption>Wedding highlight film<small>Videography and edit</small></figcaption></figure>
+        <figure class="frame"><figcaption>Street portraits<small>Photography</small></figcaption></figure>
+        <figure class="frame"><figcaption>Short documentary<small>Edit and colour</small></figcaption></figure>
+        <figure class="frame"><figcaption>Product reel<small>Shoot and edit</small></figcaption></figure>
+        <figure class="frame"><figcaption>Event coverage<small>Photo and video</small></figcaption></figure>
+        <figure class="frame w"><figcaption>Travel film<small>Videography and edit</small></figcaption></figure>
+      </div>
+      <p class="hint">These are placeholders. Replace them with your real photos and videos (see the comment in index.html).</p>
+    </section>
+
+    <section id="about" class="two">
+      <div>
+        <h2>About</h2>
+        <p>I'm Mina, a computer science student who loves telling stories with a camera. I shoot the footage, cut it together and finish it so it feels right from the first second.</p>
+        <p>Studying code helps me work faster and think in systems, from organising big projects to automating boring editing tasks.</p>
+      </div>
+      <div>
+        <h2>Skills</h2>
+        <ul class="list">
+          <li>Video editing <span>Cuts, pacing, sound, colour</span></li>
+          <li>Videography <span>Events, interviews, travel</span></li>
+          <li>Photography <span>Portraits, street, products</span></li>
+          <li>Computer science <span>Programming and problem solving</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let's work together</h2>
+      <p class="sub">Have a shoot or an edit in mind? Send me a message.</p>
+      <a class="mail" href="mailto:minawagdy2006@gmail.com">minawagdy2006@gmail.com</a>
+      <div class="links">
+        <a href="#" rel="noopener">Instagram</a>
+        <a href="#" rel="noopener">YouTube</a>
+        <a href="#" rel="noopener">Behance</a>
+        <a href="#" rel="noopener">LinkedIn</a>
+        <a href="#" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="y">2026</span> Mina Wagdy</footer>
+</div>
+<script>document.getElementById("y").textContent=new Date().getFullYear()</script>
+</body>
+</html>
